@@ -33,6 +33,25 @@ const newUser = new user({
 });
 const savedUser = await newUser.save();
 res.status(201).json(savedUser);   
-} } catch (err) {
+} catch (err) {
+  res.status(500).json({ error: err.message });
 }
+};
+
+/* exporting the data*/
+export const login = async(req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await user.findOne({ email: email});
+    if (!user) return res.status(400).json ({ msg: "user does not exsist. "});
+
+    const matches = await bcrypt.compare(password, user.password);
+    if (!matches) return res.status(400).json({error: err.message });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete user.password;
+    res.status(200).json ({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 }
