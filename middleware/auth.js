@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 
+
+/*this for API authaurization verified to log in with fronend*/
 export const verifyToken = async (req, res, next) => {
     try {
       {
