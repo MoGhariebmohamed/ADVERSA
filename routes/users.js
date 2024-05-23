@@ -2,11 +2,11 @@ import express from "express";
 import { 
     getUser,
     getUserFriends,
-    addRemoveFriends,
+    addRemoveFriend,
 } from "../controllers/users.js";
 import { verifyToken } from "../middleware/auth.js";
 
-const router = express.router();
+const router = express.Router();
 
 /* Reading the routes*/
 router.get("/:id", verifyToken, getUser);

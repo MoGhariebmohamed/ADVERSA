@@ -12,11 +12,11 @@ import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import { register } from "./controllers/auth.js";
-import { registerPost } from "./controllers/posts.js";
+import { readFeedPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 import user from "./models/user.js";
 import post from "./models/posts.js";
-import { users, posts } from "./data/index.js";
+/*import { users, posts } from "./data/index.js";*/
 
 /* this is primary configration */
 const __filename = fileURLToPath(import.meta.url);
@@ -40,10 +40,10 @@ const storage = multer.diskStorage({destination: function (req, file, cb) {
 const upload = multer({ storage });
 
 /*files routes with picture middleware function and register end point*/
-app.post("/auth/register", upload.single("picture"), registerPost);
+app.post("/auth/register", upload.single("picture"), register);
 /*files routes */
 app.use("/auth", authRoutes);
-app.use("/users", userRotes);
+app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 /* database setup using mongoose */

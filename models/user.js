@@ -4,25 +4,25 @@ const userInfluencer = new mongoose.Schema(
     {
         firstName: {
             type: String,
-            required: true,
+            /*required: true,*/
             min: 2,
             max:50,
         },
         lastName: {
             type: String,
-            required: true,
+            /*required: true,*/
             min: 2,
             max:50,
         },
         password: {
             type: String,
-            required: true,
+            /*required: true,*/
             min: 8,
             max:60,
         },
         email: {
             type: String,
-            required: true,
+            /*required: true,*/
             unique: true,
             min: 2,
             max:50,
@@ -32,12 +32,12 @@ const userInfluencer = new mongoose.Schema(
             default: "",
         },
         friends: {
-            type: array,
+            type: Array,
             default: [],
         },
         location: {
             Type: String,
-            required: true,
+            /*required: true,*/
         },
         influencersFollowers: Number,
         viewedProfile: Number,
@@ -45,5 +45,5 @@ const userInfluencer = new mongoose.Schema(
     },
        { timestamps: true } 
 );
-const user = mongoose.model("user", userInfluencer);
-export default user;
+const userSchema = mongoose.model("userSchema", userInfluencer);
+export default userSchema;

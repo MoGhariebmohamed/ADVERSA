@@ -1,12 +1,12 @@
 import express from "express";
-import {getPost, getUserPost, likePost } from "../controllers/posts.js";
+import {readUserPost, readFeedPost, likePost } from "../controllers/posts.js";
 import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
 /* READ */
-router.get("/", verifyToken, createPost);
-router.get("/:userId/posts", verifyToken, getUserPost);
+router.get("/", verifyToken, readFeedPost);
+router.get("/:userId/posts", verifyToken, readUserPost);
 
 /* UPDATE */
 router.patch("/:id/like", verifyToken, likePost);
